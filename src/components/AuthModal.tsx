@@ -36,7 +36,7 @@ export default function AuthModal({
           <div className="mb-2 flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-2xl">
               <img
-                src="src/assets/Logo.png"
+                src="public/Logo.png"
                 alt="Eco-Food Logo"
                 className="w-13 h-13 "
               />
