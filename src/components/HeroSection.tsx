@@ -37,7 +37,7 @@ export default function HeroSection() {
           <button
             onClick={() => {
               setIsOpen(true);
-              setTab("login");
+              setTab("signup");
             }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8C00] px-8 py-3 text-lg font-semibold text-white shadow-md transition hover:bg-[#e67e00]"
           >
@@ -47,11 +47,11 @@ export default function HeroSection() {
           <button
             onClick={() => {
               setIsOpen(true);
-              setTab("signup");
+              setTab("login");
             }}
             className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-lg font-semibold text-white transition hover:bg-white/20"
           >
-            Sign Up
+            Sign in
           </button>
         </div>
       </div>
