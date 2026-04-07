@@ -3,7 +3,7 @@ export default function Header() {
     <div className="absolute inset-0 z-0">
       <nav className="absolute flex items-center gap-4 px-6 py-10">
         <img
-          src="src/assets/Logo.png"
+          src="public/Logo.png"
           alt="Eco-Food Logo"
           className="w-25 h-25"
         />
