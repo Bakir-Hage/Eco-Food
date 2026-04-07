@@ -1,4 +1,3 @@
-import { TrendingDown, Users, Utensils } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 export default function FeaturesSection() {

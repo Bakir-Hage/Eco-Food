@@ -1,4 +1,3 @@
-import { Utensils, TrendingDown, Users } from "lucide-react";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
