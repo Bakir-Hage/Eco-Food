@@ -1,6 +1,27 @@
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import AuthModal from "./AuthModal";
+
+type Tab = "login" | "signup";
 
 export default function HeroSection() {
+  const user = useSelector((state: any) => state.user);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log("User state:", user);
+  const [tab, setTab] = useState<Tab>("login");
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   return (
     <div className="container mx-auto px-4 z-10">
       <div className="max-w-2xl">
@@ -13,16 +34,33 @@ export default function HeroSection() {
           surplus meals before they go to waste.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
-          <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8C00] px-8 py-3 text-lg font-semibold text-white shadow-md transition hover:bg-[#e67e00]">
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setTab("login");
+            }}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8C00] px-8 py-3 text-lg font-semibold text-white shadow-md transition hover:bg-[#e67e00]"
+          >
             Get Started
             <ArrowRight className="w-5 h-5" />
           </button>
-
-          <button className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-lg font-semibold text-white transition hover:bg-white/20">
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setTab("signup");
+            }}
+            className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-lg font-semibold text-white transition hover:bg-white/20"
+          >
             Sign Up
           </button>
         </div>
       </div>
+      <AuthModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        tab={tab}
+        setTab={setTab}
+      />
     </div>
   );
 }
