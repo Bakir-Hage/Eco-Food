@@ -14,26 +14,6 @@ export default function FeaturesSection() {
           </p>
         </div>
         <FeatureCard />
-
-        {/* <FeatureCard
-          icon={TrendingDown}
-          title="Save Up to 70%"
-          description=" Get high-quality surplus food at incredible discounts. Save money
-              while making a positive impact on the environment."
-        />
-        <FeatureCard
-          icon={Utensils}
-          title="Dual-Purpose Social Impact"
-          description=" Food Waste Mitigation: It prevents perfectly edible food from ending
-          up in landfills, where it would otherwise produce methane (a potent
-          greenhouse gas)."
-        />
-        <FeatureCard
-          icon={Users}
-          title="Join Our Community"
-          description=" Be part of a growing community committed to sustainability. Together,
-          we're making a real difference."
-        /> */}
       </div>
     </section>
   );
