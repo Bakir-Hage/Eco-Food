@@ -1,7 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { signInUser, signUpNewUser } from "../Config/firebaseLogic";
+import {
+  signInUser,
+  signUpNewUser,
+  signInWithGoogle as signInWithGoogleFirebase,
+} from "../Config/firebaseLogic";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../Config/firebaseConnection";
+import { db, auth } from "../Config/firebaseConnection";
 
 export const signupUser = createAsyncThunk(
   "user/signup",
@@ -85,18 +89,32 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-// export const signInWithGoogle = createAsyncThunk(
-//   "user/signInWithGoogle",
-//   async (mode: "login" | "signup", { rejectWithValue }) => {
-//     try {
-//       const result = await signInWithGoogle(mode);
-//       if (result.success) {
-//         return result.UID;
-//       } else {
-//         return rejectWithValue(result.error);
-//       }
-//     } catch (error) {
-//       return rejectWithValue("something-went-wrong");
-//     }
-//   },
-// );
+export const signInWithGoogle = createAsyncThunk(
+  "user/signInWithGoogle",
+  async (mode: "login" | "signup", { rejectWithValue }) => {
+    try {
+      const result = await signInWithGoogleFirebase(mode);
+      if (result.success) {
+        const uid = result.UID as string;
+        const userDoc = await getDoc(doc(db, "Users", uid));
+        let userName = null;
+        let phoneNumber = null;
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          userName = data.userName || null;
+          phoneNumber = data.phoneNumber || null;
+        }
+        return {
+          uid,
+          email: auth.currentUser?.email || null,
+          userName,
+          phoneNumber,
+        };
+      } else {
+        return rejectWithValue(result.error);
+      }
+    } catch (error) {
+      return rejectWithValue("something-went-wrong");
+    }
+  },
+);

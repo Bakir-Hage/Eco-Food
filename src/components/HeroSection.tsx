@@ -23,7 +23,7 @@ export default function HeroSection() {
   }, [isOpen]);
 
   return (
-    <div className="container mx-auto px-4 z-10">
+    <div className="container mx-auto px-4 z-10 pt-20">
       <div className="max-w-2xl">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           Rescue Surplus Food, Save Money, Reduce Waste

@@ -1,6 +1,7 @@
 import { type JSX } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithGoogle } from "../Config/firebaseLogic";
+import { useDispatch } from "react-redux";
+import { signInWithGoogle as signInWithGoogleThunk } from "../features/userThunk";
 import { useNavigate } from "react-router-dom";
 
 interface OAuthSectionProps {
@@ -11,6 +12,7 @@ export default function GoogleAuthSection({
   tab,
 }: OAuthSectionProps): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -23,7 +25,7 @@ export default function GoogleAuthSection({
       </div>
       <button
         onClick={async () => {
-          await signInWithGoogle(tab);
+          await (dispatch as any)(signInWithGoogleThunk(tab));
           navigate("/app", { replace: true });
         }}
         className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
