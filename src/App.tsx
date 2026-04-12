@@ -2,11 +2,10 @@ import { useSelector } from "react-redux";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
 
 function App() {
   const user = useSelector((state: any) => state.user);
-  type OrderStatus = "Pending" | "Ready for Pickup" | "Completed" | "Cancelled";
+  // type OrderStatus = "Pending" | "Ready for Pickup" | "Completed" | "Cancelled";
   type FoodItem = {
     id: string;
     title: string;
@@ -25,7 +24,7 @@ function App() {
     quantity: number;
   };
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems] = useState<CartItem[]>([]);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   console.log("User state:", user);
