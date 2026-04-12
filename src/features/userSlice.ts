@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, signupUser } from "./userThunk";
+import { loginUser, signupUser, signInWithGoogle } from "./userThunk";
 
 type UserStateType = {
   isLoggedIn: boolean;
@@ -83,6 +83,29 @@ export const userSlice = createSlice({
         localStorage.setItem("phoneNumber", action.payload.phoneNumber || "");
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+    builder
+      .addCase(signInWithGoogle.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signInWithGoogle.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.uid = action.payload.uid as string;
+        state.email = action.payload.email as string | null;
+        state.userName = action.payload.userName as string | null;
+        state.phoneNumber = action.payload.phoneNumber as string | null;
+        state.error = null;
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("uid", action.payload.uid as string);
+        localStorage.setItem("email", action.payload.email || "");
+        localStorage.setItem("userName", action.payload.userName || "");
+        localStorage.setItem("phoneNumber", action.payload.phoneNumber || "");
+      })
+      .addCase(signInWithGoogle.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
