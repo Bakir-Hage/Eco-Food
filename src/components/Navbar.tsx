@@ -1,4 +1,4 @@
-import { Home, Store } from "lucide-react";
+import { Home } from "lucide-react";
 import { CiLogout } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
