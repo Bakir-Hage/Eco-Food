@@ -7,16 +7,14 @@ import { logout } from "../features/userSlice";
 
 interface NavbarProps {
   cartItemCount?: number;
+  onOpenCart: () => void;
 }
 
-export default function Navbar({ cartItemCount = 0 }: NavbarProps) {
+export default function Navbar({ cartItemCount = 0, onOpenCart }: NavbarProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navLinks = [
-    { to: "/marketplace", label: "Marketplace", icon: Home },
-    { to: "/vendor", label: "Vendor Dashboard", icon: Store },
-  ];
+  const navLinks = [{ to: "MarketPlace", label: "Marketplace", icon: Home }];
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -51,10 +49,7 @@ export default function Navbar({ cartItemCount = 0 }: NavbarProps) {
           ))}
         </nav>
         <div className="hidden md:flex items-center gap-4">
-          <button
-            className="relative"
-            // onClick={onOpenCart}
-          >
+          <button className="relative" onClick={onOpenCart}>
             <LuShoppingBag className="w-7 h-7" />
             {cartItemCount > 0 && (
               <span className="absolute -top-4 -right-4 flex h-5 items-center justify-center rounded-full bg-emerald-800 px-1.5 text-[10px] font-bold text-white">
