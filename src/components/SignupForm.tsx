@@ -5,6 +5,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { signupUser } from "../features/userThunk";
 import type { AppDispatch, RootState } from "../store";
 
@@ -17,6 +18,7 @@ export default function SignupForm({
   error,
   setError,
 }: SignupFormProps): JSX.Element {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [signupForm, setSignupForm] = useState({
     name: "",
@@ -149,7 +151,7 @@ export default function SignupForm({
                     userName: signupForm.name,
                   }),
                 ).unwrap();
-                // navigate("/app");
+                navigate("/app/MarketPlace");
               } catch (error: any) {
                 if (error === "email-already-in-use")
                   setError("An account with this email already exists.");

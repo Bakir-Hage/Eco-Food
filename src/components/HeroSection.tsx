@@ -1,14 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import AuthModal from "./AuthModal";
 
 type Tab = "login" | "signup";
 
 export default function HeroSection() {
-  const user = useSelector((state: any) => state.user);
   const [isOpen, setIsOpen] = useState(false);
-  console.log("User state:", user);
   const [tab, setTab] = useState<Tab>("login");
 
   useEffect(() => {

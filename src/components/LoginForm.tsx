@@ -94,7 +94,7 @@ export default function LoginForm({
                     password: loginForm.password,
                   }),
                 ).unwrap();
-                navigate("/app");
+                navigate("/app/MarketPlace");
               } catch (error: any) {
                 if (error === "wrong-password-or-email")
                   setError("The email or password you entered is incorrect.");
